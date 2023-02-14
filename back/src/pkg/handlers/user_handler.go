@@ -10,6 +10,9 @@ import (
 func Register(c echo.Context) error {
 	var result models.User
 	err := c.Bind(&result)
+	if services.Valid(&result) != true {
+		return c.JSON(http.StatusBadRequest, "Username and password can't be null")
+	}
 	if err != nil {
 		return c.JSON(http.StatusBadRequest, "Couldn't read user from json")
 	}
