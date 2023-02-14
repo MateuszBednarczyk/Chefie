@@ -15,8 +15,8 @@ func RegisterUser(u *models.User) (*models.User, error) {
 	plainPassword := u.PasswordHash
 	passwordBytes, err := HashPassword(plainPassword)
 	u.PasswordHash = string(passwordBytes)
-	db.DB.Create(&u)
-	if err != nil {
+	result := db.DB.Create(&u)
+	if result == nil {
 		return nil, err
 	}
 	return u, err
