@@ -4,16 +4,9 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="deca26e8-70fb-4db3-8bc5-1eb8b3b94114" name="Changes" comment="db config">
-      <change afterPath="$PROJECT_DIR$/src/pkg/handlers/user_handler.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pkg/models/user.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pkg/services/user_service.go" afterDir="false" />
+    <list default="true" id="deca26e8-70fb-4db3-8bc5-1eb8b3b94114" name="Changes" comment="Register endpoint done">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/db.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/pkg/db/db.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/handlers/health_check.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/pkg/handlers/health_check.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pkg/models/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/pkg/models/user.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,7 +115,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="db config" />
-    <option name="LAST_COMMIT_MESSAGE" value="db config" />
+    <MESSAGE value="Register endpoint done" />
+    <option name="LAST_COMMIT_MESSAGE" value="Register endpoint done" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
