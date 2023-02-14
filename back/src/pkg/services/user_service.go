@@ -18,13 +18,13 @@ func RegisterUser(u *models.User) (*models.User, error) {
 	return u, err
 }
 
-func hashPassword(p string) ([]byte, error) {
-	return bcrypt.GenerateFromPassword([]byte(p), bcrypt.DefaultCost)
-}
-
-func Valid(u *models.User) bool {
+func Validate(u *models.User) bool {
 	if len(u.Username) <= 0 || len(u.PasswordHash) <= 0 {
 		return false
 	}
 	return true
+}
+
+func hashPassword(p string) ([]byte, error) {
+	return bcrypt.GenerateFromPassword([]byte(p), bcrypt.DefaultCost)
 }

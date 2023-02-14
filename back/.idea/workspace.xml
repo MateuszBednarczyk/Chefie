@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="deca26e8-70fb-4db3-8bc5-1eb8b3b94114" name="Changes" comment="Validating">
+    <list default="true" id="deca26e8-70fb-4db3-8bc5-1eb8b3b94114" name="Changes" comment="Error handling">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pkg/handlers/user_handler.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/pkg/handlers/user_handler.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pkg/services/user_service.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/pkg/services/user_service.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -117,7 +118,8 @@
     <MESSAGE value="db config" />
     <MESSAGE value="Register endpoint done" />
     <MESSAGE value="Validating" />
-    <option name="LAST_COMMIT_MESSAGE" value="Validating" />
+    <MESSAGE value="Error handling" />
+    <option name="LAST_COMMIT_MESSAGE" value="Error handling" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
