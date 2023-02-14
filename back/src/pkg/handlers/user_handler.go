@@ -11,14 +11,14 @@ func Register(c echo.Context) error {
 	var result models.User
 	err := c.Bind(&result)
 	if services.Valid(&result) != true {
-		return c.JSON(http.StatusBadRequest, "Username and password can't be null")
+		return echo.NewHTTPError(http.StatusBadRequest, "Username and password can't be null")
 	}
 	if err != nil {
-		return c.JSON(http.StatusBadRequest, "Couldn't read user from json")
+		return echo.NewHTTPError(http.StatusBadRequest, "Couldn't read user from json")
 	}
 	user, err := services.RegisterUser(&result)
 	if err != nil {
-		return c.JSON(http.StatusConflict, "Couldn't save user")
+		return echo.NewHTTPError(http.StatusConflict, "Couldn't save user")
 	}
 	return c.JSON(http.StatusOK, user)
 }
