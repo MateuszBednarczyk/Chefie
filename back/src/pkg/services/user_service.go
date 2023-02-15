@@ -2,25 +2,36 @@ package services
 
 import (
 	"back/src/pkg/db"
+	"back/src/pkg/dto"
 	"back/src/pkg/models"
 	"golang.org/x/crypto/bcrypt"
 	"strings"
 )
 
-func RegisterUser(u *models.User) (*models.User, error) {
+func RegisterUser(dto *dto.Register) (*models.User, error) {
 	var err error
-	plainPassword := u.PasswordHash
-	passwordBytes, err := hashPassword(plainPassword)
-	u.PasswordHash = string(passwordBytes)
-	result := db.DB.Create(&u)
-	if result.Error != nil {
+
+	plainPassword := dto.Password
+	if !isUserValid(dto) {
 		return nil, err
 	}
-	return u, err
+
+	passwordHash, err := hashPassword(plainPassword)
+	user := models.User{
+		Username:     dto.Username,
+		PasswordHash: string(passwordHash),
+	}
+
+	result := db.DB.Create(&user)
+	if result.Error != nil {
+		return nil, nil
+	}
+
+	return &user, err
 }
 
-func Validate(u *models.User) bool {
-	return len(strings.TrimSpace(u.Username)) != 0 || len(strings.TrimSpace(u.PasswordHash)) != 0
+func isUserValid(dto *dto.Register) bool {
+	return len(strings.TrimSpace(dto.Username)) > 0 && len(strings.TrimSpace(dto.Password)) >= 8
 }
 
 func hashPassword(p string) ([]byte, error) {
