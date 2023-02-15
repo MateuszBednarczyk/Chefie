@@ -17,7 +17,7 @@ func JwtMiddleware() (echo.MiddlewareFunc, error) {
 	provider := jwks.NewCachingProvider(issuerURL, 15*time.Second)
 	jwtValidator, err := validator.New(provider.KeyFunc, validator.RS256, issuerURL.String(), []string{"****"})
 	if err != nil {
-		return nil, echo.NewHTTPError("Something went wrong while processing jwt")
+		return nil, echo.NewHTTPError(http.StatusUnauthorized, "Something went wrong while processing jwt")
 	}
 
 	return func(next echo.HandlerFunc) echo.HandlerFunc {

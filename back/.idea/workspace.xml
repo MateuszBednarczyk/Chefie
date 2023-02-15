@@ -4,13 +4,12 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="deca26e8-70fb-4db3-8bc5-1eb8b3b94114" name="Changes" comment="Error handling">
-      <change afterPath="$PROJECT_DIR$/src/pkg/middlewares/jwt.go" afterDir="false" />
+    <list default="true" id="deca26e8-70fb-4db3-8bc5-1eb8b3b94114" name="Changes" comment="Validation fix and jwt impl">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pkg/handlers/user_handler.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/pkg/handlers/user_handler.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pkg/services/user_service.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/pkg/services/user_service.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pkg/middlewares/jwt.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/pkg/middlewares/jwt.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,7 +121,8 @@
     <MESSAGE value="Register endpoint done" />
     <MESSAGE value="Validating" />
     <MESSAGE value="Error handling" />
-    <option name="LAST_COMMIT_MESSAGE" value="Error handling" />
+    <MESSAGE value="Validation fix and jwt impl" />
+    <option name="LAST_COMMIT_MESSAGE" value="Validation fix and jwt impl" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
