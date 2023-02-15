@@ -7,7 +7,18 @@ import (
 	"net/http"
 )
 
-func Register(c echo.Context) error {
+type HuserHandler interface {
+	Register(c echo.Context) error
+}
+
+type userHandler struct {
+}
+
+func NewUserHandler() HuserHandler {
+	return &userHandler{}
+}
+
+func (h *userHandler) Register(c echo.Context) error {
 	service := services.GetRegisterService()
 	var result dto.Register
 	err := c.Bind(&result)

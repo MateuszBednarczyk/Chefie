@@ -8,14 +8,18 @@ import (
 	"strings"
 )
 
-type RegisterService interface {
+type IRegisterService interface {
 	Register(dto *dto.Register) (*models.User, error)
 }
 
-type RegisterServiceStruct struct {
+type registerService struct {
 }
 
-func (s *RegisterServiceStruct) Register(dto *dto.Register) (*models.User, error) {
+func NewRegisterService() IRegisterService {
+	return &registerService{}
+}
+
+func (s *registerService) Register(dto *dto.Register) (*models.User, error) {
 	var err error
 
 	plainPassword := dto.Password

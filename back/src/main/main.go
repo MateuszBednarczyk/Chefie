@@ -33,7 +33,10 @@ func main() {
 }
 
 func initializeHandlers(e *echo.Echo) {
-	e.GET("api/"+apiVersion+"/check", handlers.HealthCheck)
-	e.POST("api/"+apiVersion+"/register", handlers.Register)
+	healthCheckHandler := handlers.NewHealthCheck()
+	userHandler := handlers.NewUserHandler()
+
+	e.GET("api/"+apiVersion+"/check", healthCheckHandler.HealthCheck)
+	e.POST("api/"+apiVersion+"/register", userHandler.Register)
 	e.POST("api/"+apiVersion+"/login", handlers.Login)
 }

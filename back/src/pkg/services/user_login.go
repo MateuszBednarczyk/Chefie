@@ -7,14 +7,18 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
-type LoginService interface {
+type ILoginService interface {
 	LoginUser(dto *dto.Credentials) string
 }
 
-type LoginServiceStruct struct {
+type loginService struct {
 }
 
-func (s *LoginServiceStruct) LoginUser(dto *dto.Credentials) string {
+func NewLoginService() ILoginService {
+	return &loginService{}
+}
+
+func (s *loginService) LoginUser(dto *dto.Credentials) string {
 	service := GetJWTService()
 	var result models.User
 	db.DB.Where("username = ?", dto.Username).Find(&result)

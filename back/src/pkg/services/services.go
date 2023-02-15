@@ -1,23 +1,23 @@
 package services
 
-var registerService RegisterService
-var loginService LoginService
-var jwtService JWTService
+var iRegisterService IRegisterService
+var iLoginService ILoginService
+var iJwtService IJWTService
 
 func InitializeServices() {
-	registerService = RegisterService(&RegisterServiceStruct{})
-	loginService = LoginService(&LoginServiceStruct{})
-	jwtService = JWTService(&JWTServiceStruct{})
+	iRegisterService = NewRegisterService()
+	iLoginService = NewLoginService()
+	iJwtService = NewJwtService()
 }
 
-func GetRegisterService() RegisterService {
-	return registerService
+func GetRegisterService() IRegisterService {
+	return iRegisterService
 }
 
-func GetLoginService() LoginService {
-	return loginService
+func GetLoginService() ILoginService {
+	return iLoginService
 }
 
-func GetJWTService() JWTService {
-	return jwtService
+func GetJWTService() IJWTService {
+	return iJwtService
 }

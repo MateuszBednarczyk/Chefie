@@ -5,11 +5,11 @@ import (
 	"time"
 )
 
-type JWTService interface {
+type IJWTService interface {
 	CreateJWT(username string) (string, error)
 }
 
-type JWTServiceStruct struct {
+type jwtService struct {
 }
 
 type JwtClaims struct {
@@ -17,7 +17,11 @@ type JwtClaims struct {
 	jwt.StandardClaims
 }
 
-func (s *JWTServiceStruct) CreateJWT(username string) (string, error) {
+func NewJwtService() IJWTService {
+	return &jwtService{}
+}
+
+func (s *jwtService) CreateJWT(username string) (string, error) {
 	claims := JwtClaims{
 		username,
 		jwt.StandardClaims{
