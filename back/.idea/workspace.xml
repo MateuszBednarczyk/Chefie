@@ -5,7 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="deca26e8-70fb-4db3-8bc5-1eb8b3b94114" name="Changes" comment="Error handling">
+      <change afterPath="$PROJECT_DIR$/src/pkg/middlewares/jwt.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pkg/handlers/user_handler.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/pkg/handlers/user_handler.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pkg/services/user_service.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/pkg/services/user_service.go" afterDir="false" />
     </list>

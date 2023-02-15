@@ -10,7 +10,7 @@ import (
 func Register(c echo.Context) error {
 	var result models.User
 	err := c.Bind(&result)
-	if services.Validate(&result) != true {
+	if services.Validate(&result) == true {
 		return echo.NewHTTPError(http.StatusBadRequest, "Username and password can't be null")
 	}
 	if err != nil {

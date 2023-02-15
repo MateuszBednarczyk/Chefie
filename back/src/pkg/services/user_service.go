@@ -4,6 +4,7 @@ import (
 	"back/src/pkg/db"
 	"back/src/pkg/models"
 	"golang.org/x/crypto/bcrypt"
+	"strings"
 )
 
 func RegisterUser(u *models.User) (*models.User, error) {
@@ -19,10 +20,7 @@ func RegisterUser(u *models.User) (*models.User, error) {
 }
 
 func Validate(u *models.User) bool {
-	if len(u.Username) <= 0 || len(u.PasswordHash) <= 0 {
-		return false
-	}
-	return true
+	return len(strings.TrimSpace(u.Username)) != 0 || len(strings.TrimSpace(u.PasswordHash)) != 0
 }
 
 func hashPassword(p string) ([]byte, error) {
