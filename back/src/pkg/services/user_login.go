@@ -7,7 +7,15 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
-func LoginUser(dto *dto.Credentials) string {
+type LoginService interface {
+	LoginUser(dto *dto.Credentials) string
+}
+
+type LoginServiceStruct struct {
+}
+
+func (s *LoginServiceStruct) LoginUser(dto *dto.Credentials) string {
+	service := GetJWTService()
 	var result models.User
 	db.DB.Where("username = ?", dto.Username).Find(&result)
 	err := bcrypt.CompareHashAndPassword([]byte(result.PasswordHash), []byte(dto.Password))
@@ -15,7 +23,7 @@ func LoginUser(dto *dto.Credentials) string {
 		return ""
 	}
 
-	token, err := CreateJWT(result.Username)
+	token, err := service.CreateJWT(result.Username)
 	if err != nil {
 		return "something went wrong while creating jwt"
 	}

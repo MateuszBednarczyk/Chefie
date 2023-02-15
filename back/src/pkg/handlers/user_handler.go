@@ -8,12 +8,13 @@ import (
 )
 
 func Register(c echo.Context) error {
+	service := services.GetRegisterService()
 	var result dto.Register
 	err := c.Bind(&result)
 	if err != nil {
 		return echo.NewHTTPError(http.StatusBadRequest, "Couldn't read user from json")
 	}
-	user, err := services.RegisterUser(&result)
+	user, err := service.Register(&result)
 	if err != nil {
 		return echo.NewHTTPError(http.StatusConflict, "Couldn't save user")
 	}
@@ -21,11 +22,12 @@ func Register(c echo.Context) error {
 }
 
 func Login(c echo.Context) error {
+	service := services.GetLoginService()
 	var credentials dto.Credentials
 	err := c.Bind(&credentials)
 	if err != nil {
 		return echo.NewHTTPError(http.StatusUnauthorized, "Couldn't read from DTO")
 	}
-	jwt := services.LoginUser(&credentials)
+	jwt := service.LoginUser(&credentials)
 	return c.JSON(http.StatusOK, jwt)
 }

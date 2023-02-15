@@ -5,16 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="deca26e8-70fb-4db3-8bc5-1eb8b3b94114" name="Changes" comment="Validation fix and jwt impl">
-      <change afterPath="$PROJECT_DIR$/src/pkg/dto/login_dto.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pkg/dto/register_dto.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pkg/services/jwt.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pkg/services/user_login.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pkg/services/services.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/main.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pkg/handlers/user_handler.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/pkg/handlers/user_handler.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pkg/middlewares/jwt.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pkg/services/jwt.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/pkg/services/jwt.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pkg/services/user_login.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/pkg/services/user_login.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pkg/services/user_service.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/pkg/services/user_service.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

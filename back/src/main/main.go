@@ -3,6 +3,7 @@ package main
 import (
 	"back/src/pkg/db"
 	"back/src/pkg/handlers"
+	"back/src/pkg/services"
 	"github.com/labstack/echo/v4"
 )
 
@@ -26,6 +27,7 @@ func main() {
 		DbName:     dbName,
 	})
 	e := echo.New()
+	services.InitializeServices()
 	initializeHandlers(e)
 	e.Logger.Fatal(e.Start(server + ":" + port))
 }
