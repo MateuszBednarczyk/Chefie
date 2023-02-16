@@ -3,8 +3,11 @@ package main
 import (
 	"back/src/pkg/db"
 	"back/src/pkg/handlers"
+	"back/src/pkg/middlewares"
 	"back/src/pkg/services"
+	echojwt "github.com/labstack/echo-jwt/v4"
 	"github.com/labstack/echo/v4"
+	"github.com/labstack/echo/v4/middleware"
 )
 
 var (
@@ -27,6 +30,9 @@ func main() {
 		DbName:     dbName,
 	})
 	e := echo.New()
+
+	e.Use(middleware.Logger())
+	e.Use(middleware.Recover())
 	services.InitializeServices()
 	initializeHandlers(e)
 	e.Logger.Fatal(e.Start(server + ":" + port))
@@ -36,7 +42,9 @@ func initializeHandlers(e *echo.Echo) {
 	healthCheckHandler := handlers.NewHealthCheck()
 	userHandler := handlers.NewUserHandler()
 
-	e.GET("api/"+apiVersion+"/check", healthCheckHandler.HealthCheck)
+	g := e.Group("api/" + apiVersion + "/check")
+	g.Use(echojwt.JWT([]byte("secret")))
+	e.GET("api/"+apiVersion+"/check", healthCheckHandler.HealthCheck, middlewares.JwtMiddleware)
 	e.POST("api/"+apiVersion+"/register", userHandler.Register)
 	e.POST("api/"+apiVersion+"/login", handlers.Login)
 }

@@ -13,17 +13,19 @@ type jwtService struct {
 }
 
 type JwtClaims struct {
-	Name string `json:"name"`
+	Name    string `json:"name"`
+	IsAdmin bool   `json:"isAdmin"`
 	jwt.StandardClaims
 }
 
-func NewJwtService() IJWTService {
+func NewJwtService() *jwtService {
 	return &jwtService{}
 }
 
 func (s *jwtService) CreateJWT(username string) (string, error) {
 	claims := JwtClaims{
 		username,
+		false,
 		jwt.StandardClaims{
 			Id:        "Main",
 			ExpiresAt: time.Now().Add(15 * time.Minute).Unix(),
@@ -35,5 +37,5 @@ func (s *jwtService) CreateJWT(username string) (string, error) {
 	if err != nil {
 		return "", err
 	}
-	return "Bearer " + token, nil
+	return token, nil
 }

@@ -14,7 +14,7 @@ type HuserHandler interface {
 type userHandler struct {
 }
 
-func NewUserHandler() HuserHandler {
+func NewUserHandler() *userHandler {
 	return &userHandler{}
 }
 

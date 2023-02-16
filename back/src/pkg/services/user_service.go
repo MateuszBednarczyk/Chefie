@@ -15,7 +15,7 @@ type IRegisterService interface {
 type registerService struct {
 }
 
-func NewRegisterService() IRegisterService {
+func NewRegisterService() *registerService {
 	return &registerService{}
 }
 

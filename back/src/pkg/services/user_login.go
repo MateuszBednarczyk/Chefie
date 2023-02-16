@@ -14,7 +14,7 @@ type ILoginService interface {
 type loginService struct {
 }
 
-func NewLoginService() ILoginService {
+func NewLoginService() *loginService {
 	return &loginService{}
 }
 

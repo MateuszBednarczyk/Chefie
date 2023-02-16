@@ -12,10 +12,11 @@ type HhealthCheck interface {
 type healthCheck struct {
 }
 
-func NewHealthCheck() HhealthCheck {
+func NewHealthCheck() *healthCheck {
 	return &healthCheck{}
 }
 
 func (h *healthCheck) HealthCheck(c echo.Context) error {
+
 	return c.JSON(http.StatusOK, "OK!")
 }
