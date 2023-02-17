@@ -21,7 +21,7 @@ func NewLoginService() *loginService {
 func (s *loginService) LoginUser(dto *dto.Credentials) string {
 	service := GetJWTService()
 	var result models.User
-	db.DB.Where("username = ?", dto.Username).Find(&result)
+	db.GetDb().Where("username = ?", dto.Username).Find(&result)
 	err := bcrypt.CompareHashAndPassword([]byte(result.PasswordHash), []byte(dto.Password))
 	if err != nil {
 		return ""

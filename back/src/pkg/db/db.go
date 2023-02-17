@@ -14,17 +14,21 @@ type Config struct {
 	DbName     string
 }
 
-var DB *gorm.DB
+var db *gorm.DB
 
 func Init(config *Config) {
 	var err error
 	dsn := "host=" + config.DbHost + " user=" + config.DbUsername + " dbname=" + config.DbName + " port=" + config.DbPort
-	DB, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
+	db, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
 		panic("Couldn't connect to db")
 	}
-	err = DB.AutoMigrate(&models.User{})
+	err = db.AutoMigrate(&models.User{})
 	if err != nil {
 		panic("Couldn't migrate")
 	}
+}
+
+func GetDb() *gorm.DB {
+	return db
 }

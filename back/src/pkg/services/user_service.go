@@ -33,7 +33,7 @@ func (s *registerService) Register(dto *dto.Register) (*models.User, error) {
 		PasswordHash: string(passwordHash),
 	}
 
-	result := db.DB.Create(&user)
+	result := db.GetDb().Create(&user)
 	if result.Error != nil {
 		return nil, nil
 	}
