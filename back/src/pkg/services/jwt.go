@@ -25,9 +25,8 @@ func NewJwtService() *jwtService {
 func (s *jwtService) CreateJWT(username string) (string, error) {
 	claims := JwtClaims{
 		username,
-		false,
+		true,
 		jwt.StandardClaims{
-			Id:        "Main",
 			ExpiresAt: time.Now().Add(15 * time.Minute).Unix(),
 		},
 	}
@@ -37,5 +36,5 @@ func (s *jwtService) CreateJWT(username string) (string, error) {
 	if err != nil {
 		return "", err
 	}
-	return token, nil
+	return "Bearer " + token, err
 }
