@@ -34,7 +34,7 @@ func (h *userLoginRegisterHandler) Register(c echo.Context) error {
 	return c.JSON(serviceResponse.Code, NewHandlerResponse(serviceResponse))
 }
 
-func Login(c echo.Context) error {
+func (h *userLoginRegisterHandler) Login(c echo.Context) error {
 	service := services.LoginService()
 	var credentials dto.Credentials
 	err := c.Bind(&credentials)

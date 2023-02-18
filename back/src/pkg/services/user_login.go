@@ -30,10 +30,10 @@ func (s *loginService) LoginUser(dto *dto.Credentials) *ServiceResponse {
 		return NewServiceResponse("Wrong password or user does not exist", 403, []interface{}{})
 	}
 
-	token, err := service.CreateJWT(result.Username)
+	tokens := service.GenerateTokens(result.Username)
 	if err != nil {
-		return NewServiceResponse("Couldn't create jwt token", 500, []interface{}{})
+		return NewServiceResponse("Couldn't create jwt tokens", 500, []interface{}{})
 	}
 
-	return NewServiceResponse("JWT Created", 200, []interface{}{&token})
+	return NewServiceResponse("JWT Created", 200, []interface{}{&tokens})
 }

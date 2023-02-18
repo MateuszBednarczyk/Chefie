@@ -5,18 +5,18 @@ import (
 	"net/http"
 )
 
-type IHealthCheck interface {
+type IHealthCheckHandler interface {
 	HealthCheck(c echo.Context) error
 }
 
-type healthCheck struct {
+type healthCheckHandler struct {
 }
 
-func NewHealthCheck() *healthCheck {
-	return &healthCheck{}
+func NewHealthCheck() *healthCheckHandler {
+	return &healthCheckHandler{}
 }
 
-func (h *healthCheck) HealthCheck(c echo.Context) error {
+func (h *healthCheckHandler) HealthCheck(c echo.Context) error {
 
 	return c.JSON(http.StatusOK, "OK!")
 }

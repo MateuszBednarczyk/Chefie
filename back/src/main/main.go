@@ -42,10 +42,14 @@ func main() {
 func initializeHandlers(e *echo.Echo) {
 	healthCheckHandler := handlers.NewHealthCheck()
 	userHandler := handlers.NewUserHandler()
+	refreshTokenHandler := handlers.NewRefreshTokenHandler()
 
 	g := e.Group("api/" + apiVersion + "/check")
 	g.Use(echojwt.JWT([]byte("secret")))
+
 	e.GET("api/"+apiVersion+"/check", healthCheckHandler.HealthCheck, middlewares.JwtMiddleware)
 	e.POST("api/"+apiVersion+"/register", userHandler.Register)
-	e.POST("api/"+apiVersion+"/login", handlers.Login)
+	e.POST("api/"+apiVersion+"/login", userHandler.Login)
+	e.POST("api/"+apiVersion+"/token/refresh", refreshTokenHandler.Refresh)
+
 }
