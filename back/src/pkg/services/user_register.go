@@ -1,9 +1,9 @@
 package services
 
 import (
-	"back/src/pkg/db"
 	"back/src/pkg/dto"
 	"back/src/pkg/models"
+	"back/src/pkg/repository"
 	"golang.org/x/crypto/bcrypt"
 	"strings"
 )
@@ -33,12 +33,11 @@ func (s *registerService) Register(dto *dto.Register) (*models.User, error) {
 		PasswordHash: string(passwordHash),
 	}
 
-	result := db.GetDb().Create(&user)
-	if result.Error != nil {
-		return nil, nil
+	result := repository.SaveUser(&user)
+	if result == true {
+		return &user, err
 	}
-
-	return &user, err
+	return nil, err
 }
 
 func isUserValid(dto *dto.Register) bool {

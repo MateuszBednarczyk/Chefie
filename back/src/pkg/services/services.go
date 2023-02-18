@@ -10,14 +10,14 @@ func InitializeServices() {
 	iJwtService = NewJwtService()
 }
 
-func GetRegisterService() IRegisterService {
+func RegisterService() IRegisterService {
 	return iRegisterService
 }
 
-func GetLoginService() ILoginService {
+func LoginService() ILoginService {
 	return iLoginService
 }
 
-func GetJWTService() IJWTService {
+func JwtService() IJWTService {
 	return iJwtService
 }

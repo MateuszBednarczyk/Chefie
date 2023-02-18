@@ -1,9 +1,8 @@
 package services
 
 import (
-	"back/src/pkg/db"
 	"back/src/pkg/dto"
-	"back/src/pkg/models"
+	"back/src/pkg/repository"
 	"golang.org/x/crypto/bcrypt"
 )
 
@@ -19,12 +18,12 @@ func NewLoginService() *loginService {
 }
 
 func (s *loginService) LoginUser(dto *dto.Credentials) string {
-	service := GetJWTService()
-	var result models.User
-	db.GetDb().Where("username = ?", dto.Username).Find(&result)
+	service := JwtService()
+	result := repository.SelectUserByUsername(dto.Username)
+
 	err := bcrypt.CompareHashAndPassword([]byte(result.PasswordHash), []byte(dto.Password))
 	if err != nil {
-		return ""
+		return "Wrong password or user does not exist"
 	}
 
 	token, err := service.CreateJWT(result.Username)

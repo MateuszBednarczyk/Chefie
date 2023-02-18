@@ -29,6 +29,6 @@ func Init(config *Config) {
 	}
 }
 
-func GetDb() *gorm.DB {
+func Db() *gorm.DB {
 	return db
 }

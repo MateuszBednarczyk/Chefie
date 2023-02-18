@@ -19,7 +19,7 @@ func NewUserHandler() *userHandler {
 }
 
 func (h *userHandler) Register(c echo.Context) error {
-	service := services.GetRegisterService()
+	service := services.RegisterService()
 	var result dto.Register
 	err := c.Bind(&result)
 	if err != nil {
@@ -33,12 +33,15 @@ func (h *userHandler) Register(c echo.Context) error {
 }
 
 func Login(c echo.Context) error {
-	service := services.GetLoginService()
+	service := services.LoginService()
 	var credentials dto.Credentials
 	err := c.Bind(&credentials)
 	if err != nil {
 		return echo.NewHTTPError(http.StatusUnauthorized, "Couldn't read from DTO")
 	}
 	jwt := service.LoginUser(&credentials)
+	if jwt == "" {
+		return c.JSON(http.StatusBadRequest, "")
+	}
 	return c.JSON(http.StatusOK, jwt)
 }
