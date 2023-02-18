@@ -19,3 +19,12 @@ func SelectUserByUsername(username string) *models.User {
 
 	return &user
 }
+
+func IsUsernameAlreadyTaken(username string) bool {
+	var user models.User
+	_ = db.Db().Where("username = ?", username).Find(&user)
+	if user.Username == "" {
+		return false
+	}
+	return true
+}

@@ -34,8 +34,7 @@ func (s *registerService) Register(dto *dto.Register) *ServiceResponse {
 		PasswordHash: string(passwordHash),
 	}
 
-	isUsernameTaken := repository.SelectUserByUsername(user.Username)
-	if isUsernameTaken != nil {
+	if repository.IsUsernameAlreadyTaken(user.Username) == true {
 		return NewServiceResponse("Username "+user.Username+" is already taken", 409, []interface{}{})
 	}
 
