@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="deca26e8-70fb-4db3-8bc5-1eb8b3b94114" name="Changes" comment="Repository introduced">
-      <change afterPath="$PROJECT_DIR$/src/pkg/handlers/handler_response.go" afterDir="false" />
+    <list default="true" id="deca26e8-70fb-4db3-8bc5-1eb8b3b94114" name="Changes" comment="Introduced response dto">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pkg/handlers/user_login_register.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/pkg/handlers/user_login_register.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pkg/services/response.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/pkg/services/service_response.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pkg/services/user_register.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/pkg/services/user_register.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,7 +127,8 @@
     <MESSAGE value="tidy" />
     <MESSAGE value="db" />
     <MESSAGE value="Repository introduced" />
-    <option name="LAST_COMMIT_MESSAGE" value="Repository introduced" />
+    <MESSAGE value="Introduced response dto" />
+    <option name="LAST_COMMIT_MESSAGE" value="Introduced response dto" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
