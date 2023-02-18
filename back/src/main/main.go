@@ -18,7 +18,7 @@ var (
 	dbPassword = ""
 	dbPort     = "5432"
 	dbHost     = "localhost"
-	dbName     = "foodie"
+	dbName     = "Chefie"
 )
 
 func main() {

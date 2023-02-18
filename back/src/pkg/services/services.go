@@ -1,23 +1,28 @@
 package services
 
-var iRegisterService IRegisterService
-var iLoginService ILoginService
-var iJwtService IJWTService
+import (
+	"back/src/pkg/services/security"
+	"back/src/pkg/services/user"
+)
+
+var iRegisterService user.IRegisterService
+var iLoginService user.ILoginService
+var iJwtService security.IJWTService
 
 func InitializeServices() {
-	iRegisterService = NewRegisterService()
-	iLoginService = NewLoginService()
-	iJwtService = NewJwtService()
+	iRegisterService = user.NewRegisterService()
+	iLoginService = user.NewLoginService()
+	iJwtService = security.NewJwtService()
 }
 
-func RegisterService() IRegisterService {
+func RegisterService() user.IRegisterService {
 	return iRegisterService
 }
 
-func LoginService() ILoginService {
+func LoginService() user.ILoginService {
 	return iLoginService
 }
 
-func JwtService() IJWTService {
+func JwtService() security.IJWTService {
 	return iJwtService
 }

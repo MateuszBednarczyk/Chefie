@@ -6,15 +6,16 @@ import (
 )
 
 func SaveUser(user *models.User) error {
-	result := db.Db().Create(&user).Error
-	return result
+	result := db.Db().Create(&user)
+	return result.Error
 }
 
 func SelectUserByUsername(username string) *models.User {
 	var user models.User
-	result := db.Db().Where("username = ?", username).Find(&user).Error
+	result := db.Db().Where("username = ?", username).Find(&user)
 	if result.Error != nil {
 		return nil
 	}
+
 	return &user
 }

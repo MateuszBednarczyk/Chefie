@@ -5,7 +5,7 @@ import (
 	"net/http"
 )
 
-type HhealthCheck interface {
+type IHealthCheck interface {
 	HealthCheck(c echo.Context) error
 }
 

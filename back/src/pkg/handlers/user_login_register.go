@@ -7,18 +7,18 @@ import (
 	"net/http"
 )
 
-type HuserHandler interface {
+type IUserLoginRegisterHandler interface {
 	Register(c echo.Context) error
 }
 
-type userHandler struct {
+type userLoginRegisterHandler struct {
 }
 
-func NewUserHandler() *userHandler {
-	return &userHandler{}
+func NewUserHandler() *userLoginRegisterHandler {
+	return &userLoginRegisterHandler{}
 }
 
-func (h *userHandler) Register(c echo.Context) error {
+func (h *userLoginRegisterHandler) Register(c echo.Context) error {
 	service := services.RegisterService()
 	var result dto.Register
 	err := c.Bind(&result)
@@ -43,7 +43,7 @@ func Login(c echo.Context) error {
 	}
 
 	serviceResponse := service.LoginUser(&credentials)
-	if serviceResponse.Content[0] == "" {
+	if serviceResponse.Content[0] == "" || len(serviceResponse.Content) == 0 {
 		return c.JSON(serviceResponse.Code, serviceResponse)
 	}
 
