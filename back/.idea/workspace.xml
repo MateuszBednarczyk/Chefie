@@ -4,15 +4,13 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="deca26e8-70fb-4db3-8bc5-1eb8b3b94114" name="Changes" comment="db">
-      <change afterPath="$PROJECT_DIR$/src/pkg/dto/response_dto.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pkg/repository/user_repository.go" afterDir="false" />
+    <list default="true" id="deca26e8-70fb-4db3-8bc5-1eb8b3b94114" name="Changes" comment="Repository introduced">
+      <change afterPath="$PROJECT_DIR$/src/pkg/services/service_response.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pkg/db/db.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/pkg/db/db.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pkg/handlers/user_handler.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/pkg/handlers/user_handler.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pkg/services/services.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/pkg/services/services.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pkg/handlers/user_handler.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/pkg/handlers/user.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pkg/repository/user_repository.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/pkg/repository/user.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pkg/services/user_login.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/pkg/services/user_login.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pkg/services/user_service.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/pkg/services/user_register.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pkg/services/user_register.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/pkg/services/user_register.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -132,7 +130,8 @@
     <MESSAGE value="Jwt" />
     <MESSAGE value="tidy" />
     <MESSAGE value="db" />
-    <option name="LAST_COMMIT_MESSAGE" value="db" />
+    <MESSAGE value="Repository introduced" />
+    <option name="LAST_COMMIT_MESSAGE" value="Repository introduced" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>

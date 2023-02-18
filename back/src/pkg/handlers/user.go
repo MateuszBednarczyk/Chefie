@@ -23,13 +23,15 @@ func (h *userHandler) Register(c echo.Context) error {
 	var result dto.Register
 	err := c.Bind(&result)
 	if err != nil {
-		return echo.NewHTTPError(http.StatusBadRequest, "Couldn't read user from json")
+		return echo.NewHTTPError(http.StatusBadRequest, "Couldn't read serviceResponse from json")
 	}
-	user, err := service.Register(&result)
+
+	serviceResponse := service.Register(&result)
 	if err != nil {
-		return echo.NewHTTPError(http.StatusConflict, "Couldn't save user")
+		return echo.NewHTTPError(http.StatusConflict, "Couldn't save serviceResponse")
 	}
-	return c.JSON(http.StatusOK, user)
+
+	return c.JSON(serviceResponse.Code, serviceResponse)
 }
 
 func Login(c echo.Context) error {
@@ -39,9 +41,11 @@ func Login(c echo.Context) error {
 	if err != nil {
 		return echo.NewHTTPError(http.StatusUnauthorized, "Couldn't read from DTO")
 	}
-	jwt := service.LoginUser(&credentials)
-	if jwt == "" {
-		return c.JSON(http.StatusBadRequest, "")
+
+	serviceResponse := service.LoginUser(&credentials)
+	if serviceResponse.Content[0] == "" {
+		return c.JSON(serviceResponse.Code, serviceResponse)
 	}
-	return c.JSON(http.StatusOK, jwt)
+
+	return c.JSON(serviceResponse.Code, serviceResponse)
 }

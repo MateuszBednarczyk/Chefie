@@ -7,7 +7,7 @@ import (
 )
 
 type ILoginService interface {
-	LoginUser(dto *dto.Credentials) string
+	LoginUser(dto *dto.Credentials) *ServiceResponse
 }
 
 type loginService struct {
@@ -17,19 +17,23 @@ func NewLoginService() *loginService {
 	return &loginService{}
 }
 
-func (s *loginService) LoginUser(dto *dto.Credentials) string {
+func (s *loginService) LoginUser(dto *dto.Credentials) *ServiceResponse {
 	service := JwtService()
 	result := repository.SelectUserByUsername(dto.Username)
 
+	if result == nil {
+		return NewServiceResponse("Wrong password or user does not exist", 403, []interface{}{})
+	}
+
 	err := bcrypt.CompareHashAndPassword([]byte(result.PasswordHash), []byte(dto.Password))
 	if err != nil {
-		return "Wrong password or user does not exist"
+		return NewServiceResponse("Wrong password or user does not exist", 403, []interface{}{})
 	}
 
 	token, err := service.CreateJWT(result.Username)
 	if err != nil {
-		return "something went wrong while creating jwt"
+		return NewServiceResponse("Couldn't create jwt token", 500, []interface{}{})
 	}
 
-	return token
+	return NewServiceResponse("JWT Created", 200, []interface{}{&token})
 }
