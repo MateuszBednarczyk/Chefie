@@ -5,14 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="deca26e8-70fb-4db3-8bc5-1eb8b3b94114" name="Changes" comment="Repository introduced">
+      <change afterPath="$PROJECT_DIR$/src/pkg/handlers/handler_response.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pkg/middlewares/custom_middleware.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/pkg/middlewares/custom_middleware.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pkg/services/http/response.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/pkg/services/response.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pkg/services/security/jwt.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/pkg/services/jwt.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pkg/services/services.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/pkg/services/services.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pkg/services/user/user_login.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/pkg/services/user_login.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pkg/services/user/user_register.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/pkg/services/user_register.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pkg/handlers/user_login_register.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/pkg/handlers/user_login_register.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pkg/services/response.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/pkg/services/service_response.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -31,7 +31,7 @@ func (h *userLoginRegisterHandler) Register(c echo.Context) error {
 		return echo.NewHTTPError(http.StatusConflict, "Couldn't save serviceResponse")
 	}
 
-	return c.JSON(serviceResponse.Code, serviceResponse)
+	return c.JSON(serviceResponse.Code, NewHandlerResponse(serviceResponse))
 }
 
 func Login(c echo.Context) error {
@@ -47,5 +47,5 @@ func Login(c echo.Context) error {
 		return c.JSON(serviceResponse.Code, serviceResponse)
 	}
 
-	return c.JSON(serviceResponse.Code, serviceResponse)
+	return c.JSON(serviceResponse.Code, NewHandlerResponse(serviceResponse))
 }
