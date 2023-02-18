@@ -1,17 +1,15 @@
-package user
+package services
 
 import (
 	"back/src/pkg/dto"
 	"back/src/pkg/models"
 	"back/src/pkg/repository"
-	"back/src/pkg/services/http"
 	"golang.org/x/crypto/bcrypt"
-	"log"
 	"strings"
 )
 
 type IRegisterService interface {
-	Register(dto *dto.Register) *http.ServiceResponse
+	Register(dto *dto.Register) *ServiceResponse
 }
 
 type registerService struct {
@@ -21,27 +19,26 @@ func NewRegisterService() *registerService {
 	return &registerService{}
 }
 
-func (s *registerService) Register(dto *dto.Register) *http.ServiceResponse {
-	var err error
-
+func (s *registerService) Register(dto *dto.Register) *ServiceResponse {
 	plainPassword := dto.Password
 	if !isUserValid(dto) {
-		return http.NewServiceResponse("Username and password cannot be null or blank", 400, []interface{}{})
+		return NewServiceResponse("Username and password cannot be null or blank", 400, []interface{}{})
 	}
 
 	passwordHash, err := hashPassword(plainPassword)
+	if err != nil {
+		return NewServiceResponse("Couldn't hash password", 500, []interface{}{})
+	}
 	user := models.User{
 		Username:     dto.Username,
 		PasswordHash: string(passwordHash),
 	}
 
-	log.Println(err)
-
 	result := repository.SaveUser(&user)
 	if result != nil {
-		return http.NewServiceResponse("Couldn't save user", 500, []interface{}{})
+		return NewServiceResponse("Couldn't save user", 500, []interface{}{})
 	}
-	return http.NewServiceResponse("Account has been created", 200, []interface{}{&user})
+	return NewServiceResponse("Account has been created", 200, []interface{}{&user})
 }
 
 func isUserValid(dto *dto.Register) bool {

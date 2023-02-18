@@ -1,7 +1,7 @@
 package middlewares
 
 import (
-	"back/src/pkg/services/security"
+	"back/src/pkg/services"
 	"github.com/dgrijalva/jwt-go"
 	"github.com/labstack/echo/v4"
 	"strings"
@@ -19,7 +19,7 @@ func JwtMiddleware(next echo.HandlerFunc) echo.HandlerFunc {
 			return echo.ErrUnauthorized
 		}
 
-		token, err := jwt.ParseWithClaims(tokenString, &security.JwtClaims{}, func(token *jwt.Token) (interface{}, error) {
+		token, err := jwt.ParseWithClaims(tokenString, &services.JwtClaims{}, func(token *jwt.Token) (interface{}, error) {
 			return []byte("secret"), nil
 		})
 		if err != nil {
@@ -29,7 +29,7 @@ func JwtMiddleware(next echo.HandlerFunc) echo.HandlerFunc {
 			return echo.ErrUnauthorized
 		}
 
-		claims, ok := token.Claims.(*security.JwtClaims)
+		claims, ok := token.Claims.(*services.JwtClaims)
 		if !ok {
 			return echo.ErrUnauthorized
 		}

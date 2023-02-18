@@ -1,4 +1,4 @@
-package http
+package services
 
 type ServiceResponse struct {
 	Message string
