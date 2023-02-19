@@ -9,6 +9,7 @@ import (
 type IJWTService interface {
 	GenerateTokens(username string) *ServiceResponse
 	RefreshToken(rawToken string) *ServiceResponse
+	IsTokenValid(rawToken string) *ServiceResponse
 }
 
 type jwtService struct {
@@ -19,6 +20,8 @@ type JwtClaims struct {
 	IsAdmin  bool   `json:"isAdmin"`
 	jwt.StandardClaims
 }
+
+type isTokenCorrect bool
 
 func NewJwtService() *jwtService {
 	return &jwtService{}
@@ -44,13 +47,13 @@ func (s *jwtService) GenerateTokens(username string) *ServiceResponse {
 	rawToken := jwt.NewWithClaims(jwt.SigningMethodHS256, baseTokenClaims)
 	token, err := rawToken.SignedString([]byte("secret"))
 	if err != nil {
-		return NewServiceResponse("Couldn't parse user's claims", 500, nil)
+		return NewServiceResponse("Invalid token", 500, nil)
 	}
 
 	rawRefreshToken := jwt.NewWithClaims(jwt.SigningMethodHS256, refreshTokenClaims)
 	refreshToken, err := rawRefreshToken.SignedString([]byte("secret"))
 	if err != nil {
-		return NewServiceResponse("Invalid secret", 403, nil)
+		return NewServiceResponse("Invalid token", 403, nil)
 
 	}
 
@@ -60,6 +63,19 @@ func (s *jwtService) GenerateTokens(username string) *ServiceResponse {
 }
 
 func (s *jwtService) RefreshToken(rawToken string) *ServiceResponse {
+	if s.IsTokenValid(rawToken).Content[0] == false {
+		return NewServiceResponse("Invalid token", 403, nil)
+	}
+
+	tokens := JwtService().GenerateTokens(rawToken)
+	if tokens.Content == nil {
+		return NewServiceResponse(tokens.Message, tokens.Code, nil)
+	}
+
+	return tokens
+}
+
+func (s *jwtService) IsTokenValid(rawToken string) *ServiceResponse {
 	if rawToken == "" {
 		return NewServiceResponse("Given token is empty", 400, []interface{}{})
 	}
@@ -83,10 +99,6 @@ func (s *jwtService) RefreshToken(rawToken string) *ServiceResponse {
 	if !ok {
 		return NewServiceResponse("Invalid token", 403, []interface{}{})
 	}
-	tokens := JwtService().GenerateTokens(claims.Username)
-	if tokens.Content == nil {
-		return NewServiceResponse(tokens.Message, tokens.Code, nil)
-	}
 
-	return tokens
+	return NewServiceResponse("Correct token", 200, []interface{}{isTokenCorrect(true), claims})
 }

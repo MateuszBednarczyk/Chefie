@@ -4,14 +4,10 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="deca26e8-70fb-4db3-8bc5-1eb8b3b94114" name="Changes" comment="User validation">
-      <change afterPath="$PROJECT_DIR$/src/pkg/handlers/refresh_token.go" afterDir="false" />
+    <list default="true" id="deca26e8-70fb-4db3-8bc5-1eb8b3b94114" name="Changes" comment="Refresh tokens">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pkg/handlers/health_check.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/pkg/handlers/health_check.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pkg/handlers/user_login_register.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/pkg/handlers/user_login_register.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pkg/middlewares/custom_middleware.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/pkg/middlewares/custom_middleware.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pkg/services/jwt.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/pkg/services/jwt.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pkg/services/user_login.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/pkg/services/user_login.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -134,7 +130,8 @@
     <MESSAGE value="Repository introduced" />
     <MESSAGE value="Introduced response dto" />
     <MESSAGE value="User validation" />
-    <option name="LAST_COMMIT_MESSAGE" value="User validation" />
+    <MESSAGE value="Refresh tokens" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refresh tokens" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>

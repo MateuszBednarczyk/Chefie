@@ -1,42 +1,28 @@
 package middlewares
 
 import (
+	"back/src/pkg/handlers"
 	"back/src/pkg/services"
-	"github.com/dgrijalva/jwt-go"
 	"github.com/labstack/echo/v4"
-	"strings"
 )
 
 func JwtMiddleware(next echo.HandlerFunc) echo.HandlerFunc {
 	return func(c echo.Context) error {
 		authHeader := c.Request().Header.Get("Authorization")
-		if authHeader == "" {
-			return echo.ErrUnauthorized
+		serviceResponse := services.JwtService().IsTokenValid(authHeader)
+
+		if len(serviceResponse.Content) == 0 {
+			return c.JSON(serviceResponse.Code, handlers.NewHandlerResponse(serviceResponse))
 		}
 
-		tokenString := strings.TrimPrefix(authHeader, "Bearer ")
-		if tokenString == authHeader {
-			return echo.ErrUnauthorized
+		if serviceResponse.Content[0] == false {
+			return c.JSON(serviceResponse.Code, handlers.NewHandlerResponse(serviceResponse))
 		}
 
-		token, err := jwt.ParseWithClaims(tokenString, &services.JwtClaims{}, func(token *jwt.Token) (interface{}, error) {
-			return []byte("secret"), nil
-		})
-		if err != nil {
-			return echo.ErrUnauthorized
-		}
-		if !token.Valid {
-			return echo.ErrUnauthorized
-		}
-
-		claims, ok := token.Claims.(*services.JwtClaims)
-		if !ok {
-			return echo.ErrUnauthorized
-		}
-		if claims.IsAdmin {
+		if serviceResponse.Content[1].(*services.JwtClaims).IsAdmin == true {
 			return next(c)
 		}
 
-		return echo.ErrForbidden
+		return c.JSON(serviceResponse.Code, handlers.NewHandlerResponse(serviceResponse))
 	}
 }
