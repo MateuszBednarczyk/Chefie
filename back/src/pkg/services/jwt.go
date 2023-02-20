@@ -47,7 +47,7 @@ func (s *jwtService) GenerateTokens(username string) *ServiceResponse {
 	rawToken := jwt.NewWithClaims(jwt.SigningMethodHS256, baseTokenClaims)
 	token, err := rawToken.SignedString([]byte("secret"))
 	if err != nil {
-		return NewServiceResponse("Invalid token", 500, nil)
+		return NewServiceResponse("Invalid token", 500, []interface{}{})
 	}
 
 	rawRefreshToken := jwt.NewWithClaims(jwt.SigningMethodHS256, refreshTokenClaims)
