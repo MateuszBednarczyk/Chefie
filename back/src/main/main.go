@@ -1,16 +1,13 @@
 package main
 
 import (
-	"fmt"
 	echojwt "github.com/labstack/echo-jwt/v4"
 	"github.com/labstack/echo/v4"
-	"github.com/labstack/echo/v4/middleware"
 	"sync"
 
 	"back/src/pkg/db"
 	"back/src/pkg/handlers"
 	"back/src/pkg/middlewares"
-	"back/src/pkg/services"
 )
 
 var (
@@ -23,9 +20,6 @@ var (
 	dbHost     = "localhost"
 	dbName     = "Chefie"
 )
-
-var lock = &sync.Mutex{}
-var e *echo.Echo
 
 func main() {
 	db.Init(&db.Config{
@@ -40,38 +34,20 @@ func main() {
 	wg.Add(1)
 	go launchServer(&wg)
 	wg.Wait()
+	launchServer(&wg)
 
 }
 
-func launchServer(wg *sync.WaitGroup) *echo.Echo {
-	lock.Lock()
-	defer lock.Unlock()
-	defer wg.Done()
-
-	if e != nil {
-		panic("Server already launched")
-	} else {
-		fmt.Println("Server launching")
-		e := echo.New()
-		e.Use(middleware.Logger())
-		e.Use(middleware.Recover())
-		services.InitializeServices()
-		initializeHandlers(e)
-		e.Logger.Fatal(e.Start(server + ":" + port))
-	}
-	return e
-}
-
-func initializeHandlers(e *echo.Echo) {
+func initializeHandlers(serverInstance *echo.Echo) {
 	healthCheckHandler := handlers.NewHealthCheck()
 	userHandler := handlers.NewUserHandler()
 	refreshTokenHandler := handlers.NewRefreshTokenHandler()
 
-	g := e.Group("api/" + apiVersion + "/check")
+	g := serverInstance.Group("api/" + apiVersion + "/check")
 	g.Use(echojwt.JWT([]byte("secret")))
 
-	e.GET("api/"+apiVersion+"/check", healthCheckHandler.HealthCheck, middlewares.JwtMiddleware)
-	e.POST("api/"+apiVersion+"/register", userHandler.Register)
-	e.POST("api/"+apiVersion+"/login", userHandler.Login)
-	e.POST("api/"+apiVersion+"/token/refresh", refreshTokenHandler.Refresh)
+	serverInstance.GET("api/"+apiVersion+"/check", healthCheckHandler.HealthCheck, middlewares.JwtMiddleware)
+	serverInstance.POST("api/"+apiVersion+"/register", userHandler.Register)
+	serverInstance.POST("api/"+apiVersion+"/login", userHandler.Login)
+	serverInstance.POST("api/"+apiVersion+"/token/refresh", refreshTokenHandler.Refresh)
 }
