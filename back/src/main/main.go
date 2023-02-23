@@ -34,7 +34,6 @@ func main() {
 	wg.Add(1)
 	go launchServer(&wg)
 	wg.Wait()
-	launchServer(&wg)
 
 }
 
