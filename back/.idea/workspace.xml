@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="deca26e8-70fb-4db3-8bc5-1eb8b3b94114" name="Changes" comment="Refresh tokens">
-      <change afterPath="$PROJECT_DIR$/src/pkg/services/jwt_test.go" afterDir="false" />
+    <list default="true" id="deca26e8-70fb-4db3-8bc5-1eb8b3b94114" name="Changes" comment="jwt tests">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/main.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,7 +62,7 @@
       <recent name="$PROJECT_DIR$/src/pkg/repository" />
     </key>
   </component>
-  <component name="RunManager" selected="Go Test.TestJwtService_RefreshToken in back/src/pkg/services">
+  <component name="RunManager" selected="Go Build.go build main.go (1)">
     <configuration name="go build main.go (1)" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="back" />
       <working_directory value="$PROJECT_DIR$" />
@@ -122,9 +120,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Build.go build main.go (1)" />
         <item itemvalue="Go Test.TestJwtService_RefreshToken in back/src/pkg/services" />
         <item itemvalue="Go Test.TestJwtService_GenerateTokens in back/src/pkg/services" />
-        <item itemvalue="Go Build.go build main.go (1)" />
         <item itemvalue="Go Test.gobench back/src/pkg/services" />
         <item itemvalue="Go Test.go test back/src/pkg/services" />
       </list>

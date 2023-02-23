@@ -1,9 +1,11 @@
 package main
 
 import (
+	"fmt"
 	echojwt "github.com/labstack/echo-jwt/v4"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
+	"sync"
 
 	"back/src/pkg/db"
 	"back/src/pkg/handlers"
@@ -22,6 +24,9 @@ var (
 	dbName     = "Chefie"
 )
 
+var lock = &sync.Mutex{}
+var e *echo.Echo
+
 func main() {
 	db.Init(&db.Config{
 		DbUsername: dbUsername,
@@ -30,13 +35,30 @@ func main() {
 		DbHost:     dbHost,
 		DbName:     dbName,
 	})
-	e := echo.New()
 
-	e.Use(middleware.Logger())
-	e.Use(middleware.Recover())
-	services.InitializeServices()
-	initializeHandlers(e)
-	e.Logger.Fatal(e.Start(server + ":" + port))
+	var wg sync.WaitGroup
+	wg.Add(1)
+	go launchServer()
+	wg.Wait()
+
+}
+
+func launchServer() *echo.Echo {
+	lock.Lock()
+	defer lock.Unlock()
+
+	if e != nil {
+		panic("Server already launched")
+	} else {
+		fmt.Println("Server launching")
+		e := echo.New()
+		e.Use(middleware.Logger())
+		e.Use(middleware.Recover())
+		services.InitializeServices()
+		initializeHandlers(e)
+		e.Logger.Fatal(e.Start(server + ":" + port))
+	}
+	return e
 }
 
 func initializeHandlers(e *echo.Echo) {
@@ -51,5 +73,4 @@ func initializeHandlers(e *echo.Echo) {
 	e.POST("api/"+apiVersion+"/register", userHandler.Register)
 	e.POST("api/"+apiVersion+"/login", userHandler.Login)
 	e.POST("api/"+apiVersion+"/token/refresh", refreshTokenHandler.Refresh)
-
 }
