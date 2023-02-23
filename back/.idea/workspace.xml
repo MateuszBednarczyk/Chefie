@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="deca26e8-70fb-4db3-8bc5-1eb8b3b94114" name="Changes" comment="jwt tests">
+    <list default="true" id="deca26e8-70fb-4db3-8bc5-1eb8b3b94114" name="Changes" comment="singleton - only one instance of server can be launched">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/main.go" afterDir="false" />
     </list>
@@ -170,7 +170,8 @@
     <MESSAGE value="Introduced response dto" />
     <MESSAGE value="User validation" />
     <MESSAGE value="Refresh tokens" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refresh tokens" />
+    <MESSAGE value="singleton - only one instance of server can be launched" />
+    <option name="LAST_COMMIT_MESSAGE" value="singleton - only one instance of server can be launched" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>

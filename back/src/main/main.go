@@ -38,14 +38,15 @@ func main() {
 
 	var wg sync.WaitGroup
 	wg.Add(1)
-	go launchServer()
+	go launchServer(&wg)
 	wg.Wait()
 
 }
 
-func launchServer() *echo.Echo {
+func launchServer(wg *sync.WaitGroup) *echo.Echo {
 	lock.Lock()
 	defer lock.Unlock()
+	defer wg.Done()
 
 	if e != nil {
 		panic("Server already launched")
