@@ -1,9 +1,11 @@
 package main
 
 import (
+	"fmt"
+	"sync"
+
 	echojwt "github.com/labstack/echo-jwt/v4"
 	"github.com/labstack/echo/v4"
-	"sync"
 
 	"back/src/pkg/db"
 	"back/src/pkg/handlers"
@@ -21,6 +23,8 @@ var (
 	dbName     = "Chefie"
 )
 
+var serverInstance echo.Echo
+
 func main() {
 	db.Init(&db.Config{
 		DbUsername: dbUsername,
@@ -30,9 +34,11 @@ func main() {
 		DbName:     dbName,
 	})
 
+	ch := make(chan string)
 	var wg sync.WaitGroup
 	wg.Add(1)
-	go launchServer(&wg)
+	go launchServer(&wg, &serverInstance, ch)
+	fmt.Println(<-ch)
 	wg.Wait()
 
 }
